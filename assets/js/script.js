@@ -11,9 +11,8 @@
             for (let tarea of tareas) {
                 tbody.innerHTML += `<tr>    
     <td>${tarea.id}</td>
-    <td id="task">${tarea.nombre}</td>
-    <td><label for="opt1"></label>
-    <input type="checkbox" name="opt1" id="opt1" /> <button onclick="borrar(${tarea.completado})"> Eliminar </button></td>
+    <td id="task" for="opt1">${tarea.nombre}</td>
+    <td><input type="checkbox" name="opt1" id="opt1" onclick="pintar('red')" /> <button onclick="borrar(${tarea.completado})"> Eliminar </button></td>
 </tr>`;
             }
         }
@@ -30,18 +29,10 @@
             
         })
 
-        function borrar(id) {
+function borrar(id) {
             const index = tareas.findIndex((ele) => ele.id == id)
             tareas.splice(index, 1)
             renderTareas()
             cuenta.innerHTML = 'Total Tareas: ' + tareas.length
         }
-
-    
-        opt1=document.querySelector('#opt1').checked
-            if(opt1 == true){
-            const task = document.querySelector("#task")
-            task.style.color = "red"
-        }
-
 
