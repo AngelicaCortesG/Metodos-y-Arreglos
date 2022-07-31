@@ -1,16 +1,16 @@
 const cuentaRealizadas = document.querySelector("#realizadas")
 const realizadas = []
-function pintar () {
-    TareAgregada = document.querySelector("#task");
+function pintar (color) {
+    tareaAgregada = document.querySelector("#task");
     check = document.querySelector("#opt1").checked;
     if (check == true) {
-        TareAgregada.style.color = "red"
+        tareaAgregada.style.color = color
         realizadas.push({id: Date.now(), nombre: nuevaTarea, completado:true})
-        realizadas.innerHTML = 'Total Realizadas: ' + realizadas.length
+        cuentaRealizadas.innerHTML = 'Total Realizadas: ' + realizadas.length
     }
     else {
-        TareAgregada.style.color = "black"
+        tareaAgregada.style.color = "black"
+        
     }
   };
-
 
