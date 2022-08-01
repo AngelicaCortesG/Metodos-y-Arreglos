@@ -3,6 +3,7 @@ const btnAgregar = document.querySelector("#agregarTarea")
 const listaDeTareas = document.querySelector("#listaDeTareas")
 const tbody = document.querySelector("tbody")
 const cuenta = document.querySelector("#cuenta-tareas")
+const cuentaRealizadas = document.querySelector("#realizadas")
 
 const tareas = [
     { id: 1, nombre: "Salir de compras", completado: false },
@@ -22,13 +23,12 @@ function renderTareas() {
         html += `<tbody>
         <tr>    
     <td>${tarea.id}</td>
-    <td id="task">${tarea.nombre}</td>
-    <td><input type="checkbox" id="opt1" onChange="pintar()"/> <button onclick="borrar(${tarea.id})"> Eliminar </button></td>
+    <td class="task">${tarea.nombre}</td>
+    <td><input type="checkbox" class="opt1" onChange="pintar()"/> <button onclick="borrar(${tarea.id})"> Eliminar </button></td>
 </tr>
 </tbody>`;
     }
-    tbody.innerHTML = html;
-    
+    tbody.innerHTML = html;   
 }
 
 btnAgregar.addEventListener("click", () => {
@@ -37,7 +37,8 @@ btnAgregar.addEventListener("click", () => {
         return;
     }
     const nuevaTarea = tareaInput.value
-    tareas.push({ id: Date.now(), nombre: nuevaTarea, completado: false })
+    const nuevaId = tareas.length
+    tareas.push({ id: nuevaId+1, nombre: nuevaTarea, completado: false })
     tareaInput.value = ""
     cuenta.innerHTML = 'Total Tareas: ' + tareas.length
     renderTareas()
@@ -51,6 +52,16 @@ function borrar(id) {
     cuenta.innerHTML = 'Total Tareas: ' + tareas.length
 }
 
+function realizadas (id)
+
+
+// function pintar () {
+//     check = document.querySelector(".opt1").checked
+//     tareaAgregada = document.querySelector(".task")
+//         if (check == true) {
+//             tareaAgregada.style.color = "red"
+//         }
+//     }
 // const cuentaRealizadas = document.querySelector("#realizadas")
 // function pintar () {
 //     check = document.querySelector("#opt1");
