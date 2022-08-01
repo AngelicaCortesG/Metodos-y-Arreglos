@@ -12,7 +12,8 @@
                 tbody.innerHTML += `<tr>    
     <td>${tarea.id}</td>
     <td id="task">${tarea.nombre}</td>
-    <td><input type="checkbox" id="opt1" onChange="pintar('red')" /> <button onclick="borrar(${tarea.completado})"> Eliminar </button></td>
+    <td><label for="opt1"></label>
+    <input type="checkbox" name="opt1" id="opt1" onChange="pintar()" /> <button onclick="borrar(${tarea.completado})"> Eliminar </button></td>
 </tr>`;
             }
         }
@@ -36,3 +37,5 @@ function borrar(id) {
             cuenta.innerHTML = 'Total Tareas: ' + tareas.length
         }
 
+
+        
