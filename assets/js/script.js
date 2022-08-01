@@ -5,29 +5,29 @@ const tbody = document.querySelector("tbody")
 const cuenta = document.querySelector("#cuenta-tareas")
 
 const tareas = [
-    // { id: 1, nombre: "Salir de compras", completado: false },
-    // { id: 2, nombre: "Estudiar Desafío", completado: false },
-    // { id: 3, nombre: "Hacer desafío", completado: false },
+    { id: 1, nombre: "Salir de compras", completado: false },
+    { id: 2, nombre: "Estudiar Desafío", completado: false },
+    { id: 3, nombre: "Hacer desafío", completado: false },
 ]
 // const indiceTareas = tareas.findIndex( tarea => tarea.completado === false)
 // tareas.splice(indiceTareas, 0, completado: true)
 
+renderTareas()
 
 function renderTareas() {
     let html =""
     // tbody.innerHTML = ""
     for (let tarea of tareas) {
-        html += `<tr>    
+        html += `<tbody>
+        <tr>    
     <td>${tarea.id}</td>
-    <td id="task">${tarea.nombre}</td>
-    <td>
-    <input type="checkbox" id="opt1" onChange="pintar()" /> <button onclick="borrar(${tarea.completado})"> Eliminar </button></td>
-</tr>`;
+    <td>${tarea.nombre}</td>
+    <td><input type="checkbox" id="opt1" onChange="pintar()"/> <button onclick="borrar(${tarea.id})"> Eliminar </button></td>
+</tr>
+</tbody>`;
     }
-    tbody.innerHTML = html
+    tbody.innerHTML = html;
 }
-
-renderTareas()
 
 btnAgregar.addEventListener("click", () => {
     if (tareaInput.value == "") {
@@ -48,4 +48,21 @@ function borrar(id) {
     renderTareas()
     cuenta.innerHTML = 'Total Tareas: ' + tareas.length
 }
+
+const cuentaRealizadas = document.querySelector("#realizadas")
+const realizadas = []
+function pintar () {
+    // tareaAgregada = document.querySelector("#task");
+    check = document.querySelector(".opt").checked;
+    if (check == true) {
+        tareaAgregada = document.querySelector(".task");
+        tareaAgregada.style.color = "red"
+        realizadas.push({id: Date.now(), nombre: nuevaTarea, completado:true})
+        cuentaRealizadas.innerHTML = 'Total Realizadas: ' + realizadas.length
+    }
+    else {
+        tareaAgregada.style.color = "black"
+        
+    }
+  };
 
