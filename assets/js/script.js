@@ -13,6 +13,7 @@ const tareas = [
 // tareas.splice(indiceTareas, 0, completado: true)
 
 renderTareas()
+cuenta.innerHTML = 'Total Tareas: ' + tareas.length
 
 function renderTareas() {
     let html =""
@@ -21,12 +22,13 @@ function renderTareas() {
         html += `<tbody>
         <tr>    
     <td>${tarea.id}</td>
-    <td>${tarea.nombre}</td>
+    <td id="task">${tarea.nombre}</td>
     <td><input type="checkbox" id="opt1" onChange="pintar()"/> <button onclick="borrar(${tarea.id})"> Eliminar </button></td>
 </tr>
 </tbody>`;
     }
     tbody.innerHTML = html;
+    
 }
 
 btnAgregar.addEventListener("click", () => {
@@ -50,14 +52,13 @@ function borrar(id) {
 }
 
 // const cuentaRealizadas = document.querySelector("#realizadas")
-// const realizadas = []
 // function pintar () {
-//     // tareaAgregada = document.querySelector("#task");
-//     check = document.querySelector(".opt").checked;
+//     check = document.querySelector("#opt1");
 //     if (check == true) {
-//         tareaAgregada = document.querySelector(".task");
+//         const tareaRealizada= check.checked
+//         // tareaAgregada = document.querySelector("#task");
 //         tareaAgregada.style.color = "red"
-//         realizadas.push({id: Date.now(), nombre: nuevaTarea, completado:true})
+//         tareas.push({id: Date.now(), nombre: nuevaTarea, completado:true})
 //         cuentaRealizadas.innerHTML = 'Total Realizadas: ' + realizadas.length
 //     }
 //     else {
