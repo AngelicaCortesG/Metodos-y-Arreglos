@@ -25,7 +25,10 @@ function renderTareas() {
     </td>
     <td>
     <label for="opt1" id="label1"></label>
-    <input name="opt1"type="checkbox" id="opt1" onclick="pintar(${tarea.id})">
+    ${tarea.completado
+        ? `<input name="opt1"type="checkbox" id="opt1" onclick="pintar(${tarea.id})" checked="true">`
+        : `<input name="opt1"type="checkbox" id="opt1" onclick="pintar(${tarea.id})">`
+    }
     <button class="delete" onclick="borrar(${tarea.id})"> Eliminar</button></td>
     </tr>
     </tbody>`;
