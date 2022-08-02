@@ -1,0 +1,41 @@
+body {
+    background-color: gainsboro;
+    margin-top: 50px;
+}
+td {
+    padding: 5px 5px 5px 5px;
+  
+}
+table{
+    padding: 5px 5px 5px 5px;
+    
+}
+ th {
+    padding: 5px 5px 5px 5px;
+   
+}
+.padre {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.addTask{
+    color: white;
+    background-color: rgb(72, 142, 72);
+    padding: 10px;
+    border: none;
+}
+
+.delete{
+    color: white;
+    background-color: rgb(62, 73, 193);
+    padding: 10px;
+    border: none;
+    width: 150px;
+}
+input{
+    padding: 10px;
+    width: 200px;
+}
