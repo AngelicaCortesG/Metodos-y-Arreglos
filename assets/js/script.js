@@ -3,40 +3,38 @@ const btnAgregar = document.querySelector("#agregarTarea")
 const listaDeTareas = document.querySelector("#listaDeTareas")
 const tbody = document.querySelector("tbody")
 const cuenta = document.querySelector("#cuenta-tareas")
-
-// let statusCheck= ""
-
+const cuentaRealizadas = document.querySelector("#realizadas")
 const tareas = [
     { id: 1, nombre: "Salir de compras", completado: false },
     { id: 2, nombre: "Estudiar Desafío", completado: false },
     { id: 3, nombre: "Hacer desafío", completado: false },
 ]
-// const indiceTareas = tareas.findIndex( tarea => tarea.completado === false)
-// tareas.splice(indiceTareas, 0, completado: true)
 
 renderTareas()
 
 function renderTareas() {
-    let html =""
+    let html = ""
     for (let tarea of tareas) {
-        // if(tarea.completado == true){
-        //     statusCheck = "checked"
-        // }
-        // else {
-        //     statusCheck=""
-        // }
         html += `<tbody>
         <tr>    
     <td>${tarea.id}</td>
-    <td id="task">${tarea.nombre}
-    <h6 style="color: red;" id="pendiente">Pendiente</h6></td>
-    <td><input type="checkbox" id="opt1" onclick="pintar()"/> <button onclick="borrar(${tarea.id})"> Eliminar </button></td>
-</tr>
-</tbody>`;
+    <td>${tarea.nombre}</td>
+    <td>${tarea.completado
+                ? `<h4 style="color: green;" id="Pendiente">realizada</h4>`
+                : `<h4 style="color: red;" id="Rendiente">pendiente</h4>`
+            }
+    </td>
+    <td>
+    <input type="checkbox" id="opt1" onclick="pintar(${tarea.id})">
+    <button onclick="borrar(${tarea.id})"> Eliminar</button></td>
+    </tr>
+    </tbody>`;
     }
-    tbody.innerHTML = html;   
-    cuenta.innerHTML = 'Total Tareas: ' + tareas.length
-    // cuentaRealizadas.innerHTML = "Total Realizadas: " + tareas.filter(({state}) => state === true).length
+    const arr = tareas.filter((tarea) => tarea.completado == true);
+    const conteo = arr.length;
+    tbody.innerHTML = html;
+    cuenta.innerHTML = "Total Tareas: " + tareas.length;
+    cuentaRealizadas.innerHTML = "Total Realizadas: " + conteo;
 }
 
 btnAgregar.addEventListener("click", () => {
@@ -44,53 +42,50 @@ btnAgregar.addEventListener("click", () => {
         alert("Debe agregar un valor");
         return;
     }
-    const nuevaTarea = tareaInput.value
-    const nuevaId = tareas.length
-    tareas.push({ id: nuevaId+1, nombre: nuevaTarea, completado: false })
-    tareaInput.value = ""
-    cuenta.innerHTML = 'Total Tareas: ' + tareas.length
-    renderTareas()
-
+    const nuevaTarea = tareaInput.value;
+    const nuevaId = tareas.length;
+    tareas.push({ id: nuevaId + 1, nombre: nuevaTarea, completado: false });
+    tareaInput.value = "";
+    cuenta.innerHTML = "Total Tareas: " + tareas.length;
+    renderTareas();
 })
 
 function borrar(id) {
-    const index = tareas.findIndex((ele) => ele.id == id)
-    tareas.splice(index, 1)
-    renderTareas()
-    cuenta.innerHTML = 'Total Tareas: ' + tareas.length
+    const index = tareas.findIndex((ele) => ele.id == id);
+    tareas.splice(index, 1);
+
+    cuenta.innerHTML = "Total Tareas: " + tareas.length;
+
+    renderTareas();
 }
 
-// function pintar (id)
-// const index = tareas.findIndex((ele) => ele.id == id)
-// tareas.splice(index, 1)
-// renderTareas()
+function pintar(id) {
+    tareas.map((tarea) => {
+        if (tarea.id == id) tarea.completado = !tarea.completado;
+    });
+
+    renderTareas();
+}
+// realizadas = []
 
 
-// function pintar () {
-//     check = document.querySelector(".opt1").checked
-//     tareaAgregada = document.querySelector(".task")
-//         if (check == true) {
-//             tareaAgregada.style.color = "red"
-//         }
-//     }
+// function agregarRealizadas(tarea) {
+//     console.log(tarea)
+//     let pendiente = document.querySelector(`#label-${tarea.id}`);
+//     let tareaAgregada = document.querySelector(`#task-${tarea.id}`);
+//     let check = document.querySelector(`#check-${tarea.id}`)
+//     let cuentaRealizadas = document.querySelector("#cuenta-realizadas")
+// if(check.checked == true){
+//     pendiente.style.color = "green"
+//     pendiente.innerHTML = "Realizada"
+//     realizadas.push({ id: tarea.id, nombre: tarea.nombre, completado: true })
+//     cuentaRealizadas.innerHTML = 'Total Realizadas: ' + realizadas.length
+// }
+// else {
+//     pendiente.style.color = "red"
+//     pendiente.innerHTML = "Pendiente"
+//     borrar (realizadas.id, realizadas)
+//     cuentaRealizadas.innerHTML = 'Total Realizadas: ' + realizadas.length
 
-
-    let check = document.querySelector("#opt1").checked;
-    let cuentaRealizadas = document.querySelector("#realizadas")
-    let pendiente = document.querySelector("#pendiente");
-    let tareaAgregada = document.querySelector("#task");
-    let realizadas = []
-    function pintar () {
-    if (check == true) {         
-        let cantRealizadas= realizadas.length
-        pendiente.style.color = "green"
-        pendiente.innerHTML= "Realizada"
-        realizadas.push({id: cantRealizadas+1, nombre: nuevaTarea, completado:true})
-        cuentaRealizadas.innerHTML = 'Total Realizadas: ' + realizadas.lenght
-    }
-    else {
-        tareaAgregada.style.color = "black"
-        
-    }
-  };
-
+// }
+// }
